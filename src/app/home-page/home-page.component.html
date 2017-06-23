@@ -7,9 +7,20 @@
     </div>
   </div>
   <div class="row">
-    <ul>
-    <li *ngFor="let item of items | async">
-       {{ item | json }}
+    <form class="navbar-form navbar-left" novalidate #f="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Nombre" name="name" [(ngModel)]="name">
+     </div>
+     <div class="form-group">
+       <input type="text" class="form-control" placeholder="{{ (items | async)?.length }}" name="id" [(ngModel)]="id">
+     </div>
+  <button type="submit" class="btn btn-default" (click)="addItem()">Submit</button>
+    </form>
+  </div>
+  <div class="row">
+    <ul class="list-group">
+    <li *ngFor="let item of items | async" class="list-group-item">
+       {{ item.name }}
     </li>
    </ul>
   </div>

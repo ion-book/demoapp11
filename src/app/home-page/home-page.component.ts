@@ -10,6 +10,9 @@ import { AngularFireDatabase,FirebaseListObservable } from 'angularfire2/databas
 })
 export class HomePageComponent implements OnInit {
   items: FirebaseListObservable<any>;
+  name: string;
+  id: number;
+
   constructor(private authService: AuthService, private router: Router, private db: AngularFireDatabase) {
   this.items = db.list('/items');
   }
@@ -20,12 +23,17 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  addItem(newName: string) {
-    this.items.push({ text: newName });
+  addItem() {
+    this.items.push({ id: this.id, name: this.name });
+    this.id++;
+    this.name="";
   }
+
+  //TODO
   updateItem(key: string, newText: string) {
     this.items.update(key, { text: newText });
   }
+
   deleteItem(key: string) {    
     this.items.remove(key); 
   }
