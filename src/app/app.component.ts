@@ -12,9 +12,9 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private isLoggedIn: Boolean;
-  private user_displayName: String;
-  private user_email: String;
+   isLoggedIn: Boolean;
+   user_displayName: String;
+   user_email: String;
   constructor(public authService: AngularFireAuth, private router: Router) {
     
     this.authService.authState.subscribe(
